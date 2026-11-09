@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="fr">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MediaCleanarr</title><link rel="stylesheet" href="/static/style.css"></head>
+<body><main>
+<header><h1>🎬 MediaCleanarr</h1><p>Choisis un dossier, vérifie les noms proposés, puis valide. Aucun renommage automatique.</p></header>
+<section>
+<h2>📁 Explorateur de dossiers</h2>
+<div class="path"><button id="up">⬆ Parent</button><code id="current">/media</code></div><div id="folders" class="folders"></div>
+<div class="controls">
+<label>Type de contenu <select id="category"><option value="auto">Détection automatique</option><option value="movies">Films / Films anime</option><option value="series">Séries</option><option value="anime-series">Séries anime</option></select></label>
+<label><input type="checkbox" id="recursive" checked> Inclure les sous-dossiers</label>
+<label>Source de métadonnées (facultatif) <select id="provider"><option value="none">Aucune (nettoyage local)</option><option value="omdb">OMDb — films</option><option value="tvdb">TheTVDB — séries</option><option value="tmdb">TMDB — option supplémentaire</option></select></label>
+<label>Nom de la série <select id="language"><option value="original">Titre principal TheTVDB</option><option value="eng">Anglais</option><option value="fra">Français</option><option value="deu">Allemand</option><option value="spa">Espagnol</option><option value="ita">Italien</option><option value="por">Portugais</option><option value="jpn">Japonais</option><option value="kor">Coréen</option><option value="zho">Chinois</option><option value="nld">Néerlandais</option><option value="pol">Polonais</option></select></label>
+<small id="providerInfo" class="hint">Configure les clés API dans le fichier .env du NAS.</small>
+</div>
+<button id="scan" class="primary">Analyser ce dossier</button>
+</section>
+<section>
+<h2>🔎 Prévisualisation <span id="count"></span></h2>
+<p class="hint">Modifie les propositions avant validation. Seules les vidéos sélectionnées sont renommées, jamais les dossiers.</p>
+<div class="toolbar"><button id="selectAll">Tout sélectionner (sans conflits)</button><button id="selectNone">Tout désélectionner</button><button id="apply" class="primary" disabled>Renommer la sélection</button></div>
+<div class="tablewrap"><table><thead><tr><th>✓</th><th>Fichier original</th><th>Nouveau nom (modifiable)</th><th>Statut / Source</th></tr></thead><tbody id="results"><tr><td colspan="4" class="hint">Sélectionne un dossier puis clique sur Analyser.</td></tr></tbody></table></div>
+</section>
+<section><h2>↩ Historique et annulation</h2><button id="refreshHistory">Actualiser</button><div id="history" class="history"></div></section>
+<p id="notice" role="status"></p>
+<footer>Usage local uniquement · Les recherches de métadonnées nécessitent Internet · Ne pas exposer le port directement sur Internet</footer>
+</main><script src="/static/app.js"></script></body></html>
