@@ -1,0 +1,19 @@
+services:
+  media-cleanarr:
+    build: .
+    container_name: media-cleanarr
+    restart: unless-stopped
+    ports:
+      - "8088:8080"
+    environment:
+      MEDIA_ROOT: /media
+      DATABASE_PATH: /data/history.sqlite3
+      TMDB_API_KEY: ${TMDB_API_KEY:-}
+      OMDB_API_KEY: ${OMDB_API_KEY:-}
+      TVDB_API_KEY: ${TVDB_API_KEY:-}
+      TVDB_SUBSCRIBER_PIN: ${TVDB_SUBSCRIBER_PIN:-}
+      SECRET_KEY: ${SECRET_KEY:-change-this-for-your-installation}
+    volumes:
+      # Change to the real absolute path of your media share on the NAS.
+      - /volume1/media:/media:rw
+      - ./data:/data
